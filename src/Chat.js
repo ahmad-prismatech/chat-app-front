@@ -24,7 +24,9 @@ function Chat({ socket, username, room }) {
   };
 
   useEffect(async () => {
-    const response = await fetch("http://localhost:3001/all-messages")
+    const response = await fetch(
+      "https://chat-app-socket-node-backend.herokuapp.com/all-messages"
+    )
       .then((response) => response.json())
       .then((data) => {
         return data;
