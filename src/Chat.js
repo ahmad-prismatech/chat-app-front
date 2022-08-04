@@ -23,6 +23,16 @@ function Chat({ socket, username, room }) {
     }
   };
 
+  useEffect(async () => {
+    const response = await fetch("http://localhost:3001/all-messages")
+      .then((response) => response.json())
+      .then((data) => {
+        return data;
+      });
+    console.log("Response: ", response);
+    setMessageList(response.data);
+  }, []);
+
   useEffect(() => {
     socket.on("receive_message", (data) => {
       setMessageList((list) => [...list, data]);
