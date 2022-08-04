@@ -18,14 +18,14 @@ function Chat({ socket, username, room }) {
       };
 
       await socket.emit("send_message", messageData);
-      setMessageList([...messageList, messageData]);
+      setMessageList((list) => [...list, messageData]);
       setCurrentMessage("");
     }
   };
 
   useEffect(() => {
     socket.on("receive_message", (data) => {
-      setMessageList([...messageList, data]);
+      setMessageList((list) => [...list, data]);
     });
   }, [socket]);
 
